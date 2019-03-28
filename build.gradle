@@ -3,6 +3,9 @@ allprojects  {
 
   group = 'com.heroku.devcenter.webworker'
   version = '0.0.1-SNAPSHOT'
+
+  task stage(dependsOn: ['build', 'clean'])
+  build.mustRunAfter clean
 }
 
 subprojects {
