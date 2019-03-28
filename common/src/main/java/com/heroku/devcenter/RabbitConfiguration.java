@@ -22,31 +22,18 @@ public class RabbitConfiguration {
     @Bean
     public ConnectionFactory connectionFactory() {
         final URI ampqUrl;
-        String localamqp_url = getenv("LOCALAMQP_URL");
-        String cloudamqp_url = getenv("CLOUDAMQP_URL");
-
-        if (localamqp_url == null && cloudamqp_url == null) {
-            throw new IllegalStateException("Need either LOCALAMQP_URL or CLOUDAMQP_URL");
-        }
-
-        String amqp_url = localamqp_url == null ? cloudamqp_url : localamqp_url;
-
         try {
-            ampqUrl = new URI(amqp_url);
+            ampqUrl = new URI(getEnvOrThrow("CLOUDAMQP_URL"));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
 
         final CachingConnectionFactory factory = new CachingConnectionFactory();
-        if (localamqp_url == null) {
-            factory.setUsername(ampqUrl.getUserInfo().split(":")[0]);
-            factory.setPassword(ampqUrl.getUserInfo().split(":")[1]);
-            factory.setHost(ampqUrl.getHost());
-            factory.setPort(ampqUrl.getPort());
-            factory.setVirtualHost(ampqUrl.getPath().substring(1));
-        } else {
-            factory.setHost("localhost");
-        }
+        factory.setUsername(ampqUrl.getUserInfo().split(":")[0]);
+        factory.setPassword(ampqUrl.getUserInfo().split(":")[1]);
+        factory.setHost(ampqUrl.getHost());
+        factory.setPort(ampqUrl.getPort());
+        factory.setVirtualHost(ampqUrl.getPath().substring(1));
 
         return factory;
     }
