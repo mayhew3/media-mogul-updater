@@ -1,6 +1,5 @@
 package com.heroku.devcenter;
 
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -9,7 +8,6 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.amqp.support.converter.SimpleMessageConverter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.util.ErrorHandler;
 
 /**
  * Worker for receiving and processing BigOperations asynchronously.
@@ -29,30 +27,21 @@ public class BigOperationWorker {
         listenerContainer.setQueueNames(rabbitQueue.getName());
 
         // set the callback for message handling
-        listenerContainer.setMessageListener(new MessageListener() {
-            public void onMessage(Message message) {
-                final BigOperation bigOp = (BigOperation) messageConverter.fromMessage(message);
+        listenerContainer.setMessageListener((MessageListener) message -> {
+            final BigOperation bigOp = (BigOperation) messageConverter.fromMessage(message);
 
-                // simply printing out the operation, but expensive computation could happen here
-                System.out.println("Received from RabbitMQ: " + bigOp);
-            }
+            // simply printing out the operation, but expensive computation could happen here
+            System.out.println("Received from RabbitMQ: " + bigOp);
         });
 
         // set a simple error handler
-        listenerContainer.setErrorHandler(new ErrorHandler() {
-            public void handleError(Throwable t) {
-                t.printStackTrace();
-            }
-        });
+        listenerContainer.setErrorHandler(Throwable::printStackTrace);
 
         // register a shutdown hook with the JVM
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.out.println("Shutting down BigOperationWorker");
-                listenerContainer.shutdown();
-            }
-        });
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Shutting down BigOperationWorker");
+            listenerContainer.shutdown();
+        }));
 
         // start up the listener. this will block until JVM is killed.
         listenerContainer.start();
