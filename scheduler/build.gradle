@@ -3,3 +3,7 @@ description = ''
 dependencies {
   compile project(':common')
 }
+
+jar {
+  archiveName 'scheduler.jar'
+}

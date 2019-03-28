@@ -1,2 +1,2 @@
-web: java $JAVA_OPTS -jar web/target/dependency/webapp-runner.jar --port $PORT web/target/*.war
-worker: sh worker/target/bin/worker
+scheduler: java -jar scheduler/build/libs/scheduler.jar
+worker: java -jar worker/build/libs/worker.jar
