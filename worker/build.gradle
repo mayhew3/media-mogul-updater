@@ -3,7 +3,3 @@ description = ''
 dependencies {
   compile project(':common')
 }
-
-jar {
-  archiveName 'worker.jar'
-}
