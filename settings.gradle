@@ -1,8 +1,0 @@
-rootProject.name = 'parent'
-include ':common'
-include ':scheduler'
-include ':worker'
-
-project(':common').projectDir = "$rootDir/common" as File
-project(':scheduler').projectDir = "$rootDir/scheduler" as File
-project(':worker').projectDir = "$rootDir/worker" as File
