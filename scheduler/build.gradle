@@ -1,9 +1,10 @@
 
-description = ''
+apply plugin: 'application'
+
+description = 'Scheduler'
+
 dependencies {
   compile project(':common')
 }
 
-jar {
-  archiveName 'scheduler.jar'
-}
+mainClassName = 'com.heroku.devcenter.SchedulerSimpleTask'

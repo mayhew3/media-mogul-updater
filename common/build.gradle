@@ -2,13 +2,13 @@
 description = ''
 dependencies {
     compile(group: 'org.springframework.amqp', name: 'spring-amqp', version:'1.4.3.RELEASE') {
-exclude(module: 'spring-core')
+        exclude(module: 'spring-core')
     }
     compile(group: 'org.springframework.amqp', name: 'spring-rabbit', version:'1.4.3.RELEASE') {
-exclude(module: 'spring-core')
-exclude(module: 'spring-messaging')
-exclude(module: 'spring-tx')
-exclude(module: 'spring-context')
+        exclude(module: 'spring-core')
+        exclude(module: 'spring-messaging')
+        exclude(module: 'spring-tx')
+        exclude(module: 'spring-context')
     }
     compile group: 'org.springframework', name: 'spring-core', version:'4.1.4.RELEASE'
     compile group: 'org.springframework', name: 'spring-context', version:'4.1.4.RELEASE'

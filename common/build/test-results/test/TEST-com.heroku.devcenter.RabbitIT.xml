@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.heroku.devcenter.RabbitIT" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-03-29T00:00:40" hostname="Janet" time="1.662">
+  <properties/>
+  <testcase name="testAsynchronous" classname="com.heroku.devcenter.RabbitIT" time="1.581"/>
+  <testcase name="testSynchronous" classname="com.heroku.devcenter.RabbitIT" time="0.08"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Mar 28, 2019 5:00:40 PM org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer doShutdown
+INFO: Waiting for workers to finish.
+Mar 28, 2019 5:00:41 PM org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer doShutdown
+INFO: Successfully waited for workers to finish.
+]]></system-err>
+</testsuite>
