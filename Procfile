@@ -1,2 +1,2 @@
 scheduler: sh scheduler/build/scripts/scheduler
-worker: ./gradlew :worker:run
+worker: sh worker/build/scripts/worker
