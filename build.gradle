@@ -4,8 +4,8 @@ allprojects  {
   group = 'com.heroku.devcenter.webworker'
   version = '0.0.1-SNAPSHOT'
 
-  task stage(dependsOn: ['assemble', 'clean'])
-  assemble.mustRunAfter clean
+  task stage(dependsOn: ['build', 'clean'])
+  build.mustRunAfter clean
 }
 
 subprojects {
@@ -13,11 +13,11 @@ subprojects {
   tasks.withType(JavaCompile) {
   	options.encoding = 'UTF-8'
   }
-
+  
   repositories {
     mavenLocal()
     
     maven { url "http://repo.maven.apache.org/maven2" }
   }
-
+  
 }
