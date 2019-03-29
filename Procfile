@@ -1,2 +1,2 @@
-scheduler: ./gradle :scheduler:run
-worker: ./gradle :worker:run
+scheduler: gradle :scheduler:run
+worker: gradle :worker:run
