@@ -10,12 +10,14 @@ public class SchedulerSimpleTask {
 
     public static void main(String[] args) {
         System.out.println("Starting message!");
-        BigOperation bigOperation = new BigOperation("Taco");
+
+        SeriesDenormUpdater seriesDenormUpdater = new SeriesDenormUpdater();
+
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(RabbitConfiguration.class);
         AmqpTemplate amqpTemplate = context.getBean(AmqpTemplate.class);
-        amqpTemplate.convertAndSend(bigOperation);
+        amqpTemplate.convertAndSend(seriesDenormUpdater);
 
-        System.out.println("Sent to RabbitMQ: " + bigOperation);
+        System.out.println("Sent to RabbitMQ: " + seriesDenormUpdater);
 
         System.exit(0);
     }
