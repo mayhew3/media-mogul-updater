@@ -1,10 +1,9 @@
 
-apply plugin: 'application'
-
-description = 'Big Operations Worker'
-
+description = ''
 dependencies {
   compile project(':common')
 }
 
-mainClassName = 'com.heroku.devcenter.BigOperationWorker'
+jar {
+  archiveName 'worker.jar'
+}
