@@ -7,4 +7,6 @@ dependencies {
   compile project(':common')
 }
 
+sourceSets.main.java.srcDirs = ['src/main/java']
+
 mainClassName = 'com.heroku.devcenter.BigOperationWorker'
