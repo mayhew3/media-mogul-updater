@@ -5,7 +5,3 @@
 target
 .project
 .gradle/
-/build/
-classes/
-out/
-lib/
